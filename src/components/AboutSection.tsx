@@ -1,86 +1,91 @@
-/**
- * =============================================================================
- * ABOUT SECTION - src/components/AboutSection.tsx
- * =============================================================================
- * 
- * Introduces visitors to the Vitality brand and explains why they should
- * choose this water brand. Displays key differentiators in a card grid.
- * 
- * Features:
- * - Section header with gradient text
- * - 4-column responsive grid of feature cards
- * - Hover animations on cards (lift + icon color change)
- * - Staggered entrance animations
- * 
- * Each feature card includes:
- * - Icon in a rounded container
- * - Feature title
- * - Description text
- * =============================================================================
- */
-
-import { Shield, Leaf, Award, Droplet } from "lucide-react";
+import { Shield, Leaf, Droplet } from "lucide-react";
 
 const AboutSection = () => {
-  // Feature cards data - each represents a key value proposition
+  // --- Styling Constants ---
+  const styles = {
+    section: "py-24 bg-gradient-water",
+    container: "container mx-auto px-4",
+    header: "text-center mb-16 animate-fade-up",
+    badge: "text-primary font-semibold uppercase tracking-wider text-sm",
+    title: "font-serif text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6",
+    description: "text-muted-foreground text-lg max-w-2xl mx-auto",
+    
+    // Grid Layout: Forced to 1 column, max width set for better look on wide screens
+    cardGrid: "grid grid-cols-1 gap-8 max-w-2xl mx-auto", 
+    
+    // Card Styles
+    card: `group flex flex-col md:flex-row items-center md:items-start gap-6 
+           bg-gradient-card rounded-2xl p-8 shadow-card 
+           hover:shadow-elevated transition-all duration-500 
+           hover:-translate-y-1 animate-fade-up`,
+    
+    // Icon Styles
+    iconWrapper: `flex-shrink-0 w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center 
+                  group-hover:bg-primary group-hover:rotate-6 transition-all duration-300`,
+    iconInner: "w-8 h-8 text-primary group-hover:text-primary-foreground transition-colors duration-300",
+    
+    // Text Content Styles
+    contentWrapper: "text-center md:text-left",
+    cardTitle: "font-serif text-2xl font-bold text-foreground mb-2",
+    cardText: "text-muted-foreground leading-relaxed",
+  };
+
   const features = [
     {
       icon: Shield,
       title: "Quality Assured",
-      description: "Every drop is tested and certified to meet the highest quality standards.",
+      description: "Every drop is tested and certified to meet the highest quality standards, ensuring your safety with every sip.",
     },
     {
       icon: Leaf,
       title: "Natural Source",
-      description: "Sourced from protected natural springs, free from contaminants.",
+      description: "Sourced from protected natural springs deep within the earth, naturally filtered and free from contaminants.",
     },
     {
       icon: Droplet,
       title: "Essential Minerals",
-      description: "Enriched with vital minerals your body needs for optimal health.",
+      description: "Enriched with vital minerals like magnesium and calcium that your body needs for optimal daily performance.",
     },
   ];
 
   return (
-    <section id="about" className="py-24 bg-gradient-water">
-      <div className="container mx-auto px-4">
+    <section id="about" className={styles.section}>
+      <div className={styles.container}>
         
         {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-up">
-          <span className="text-primary font-semibold uppercase tracking-wider text-sm">
-            About Vitality
-          </span>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6">
+        <div className={styles.header}>
+          <span className={styles.badge}>About Vitality</span>
+          <h2 className={styles.title}>
             Why Choose <span className="text-gradient">Vitality Water?</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            At Vitality, we believe that pure water is the foundation of a healthy life. 
+          <p className={styles.description}>
+            Pure water is the foundation of a healthy life. 
             Our commitment to quality ensures every sip refreshes and revitalizes.
           </p>
         </div>
 
-        {/* Feature Cards Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* 1-Column, 3-Row Grid */}
+        <div className={styles.cardGrid}>
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className="group bg-gradient-card rounded-2xl p-8 shadow-card hover:shadow-elevated transition-all duration-500 hover:-translate-y-2 animate-fade-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className={styles.card}
+              style={{ animationDelay: `${index * 0.15}s` }}
             >
-              {/* Icon container - changes color on hover */}
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
-                <feature.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
+              {/* Icon */}
+              <div className={styles.iconWrapper}>
+                <feature.icon className={styles.iconInner} />
               </div>
               
-              {/* Feature title */}
-              <h3 className="font-serif text-xl font-bold text-foreground mb-3">
-                {feature.title}
-              </h3>
-              
-              {/* Feature description */}
-              <p className="text-muted-foreground leading-relaxed">
-                {feature.description}
-              </p>
+              {/* Text Content */}
+              <div className={styles.contentWrapper}>
+                <h3 className={styles.cardTitle}>
+                  {feature.title}
+                </h3>
+                <p className={styles.cardText}>
+                  {feature.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>

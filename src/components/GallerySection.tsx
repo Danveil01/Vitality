@@ -24,7 +24,7 @@
 
 import { useState } from "react";
 import { X } from "lucide-react";
-import galleryFactory from "@/assets/gallery-factory.jpg";
+import galleryFactory from "@/assets/gallery-factory.png";
 import galleryPurification from "@/assets/gallery-purification.jpg";
 import galleryTeam from "@/assets/gallery-team.jpg";
 import galleryWarehouse from "@/assets/gallery-warehouse.jpg";
@@ -135,7 +135,7 @@ const GallerySection = () => {
             src={selectedImage}
             alt="Gallery preview"
             className="max-w-full max-h-[90vh] object-contain rounded-lg"
-            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking image
+            onClick={(e) => e.stopPropagation()} 
           />
         </div>
       )}

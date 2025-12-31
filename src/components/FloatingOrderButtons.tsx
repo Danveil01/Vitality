@@ -24,7 +24,7 @@ import { Phone, MessageCircle } from "lucide-react";
 
 const FloatingOrderButtons = () => {
   // Contact phone number (without spaces or dashes)
-  const phoneNumber = "+233205032301";
+  const phoneNumber = "+233537930323";
   
   // Pre-encoded message for WhatsApp - will appear in the chat when opened
   const whatsappMessage = encodeURIComponent(

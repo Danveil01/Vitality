@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Check, Phone, MessageCircle } from "lucide-react";
 
 const PricingSection = () => {
-  const phoneNumber = "+233205032301";
+  const phoneNumber = "+233537930323";
   const whatsappMessage = encodeURIComponent(
     "Hello Vitality Water! I would like to place an order."
   );
@@ -11,7 +11,7 @@ const PricingSection = () => {
     {
       name: "Single Bag",
       description: "Perfect for personal use",
-      price: "GH₵ 8",
+      price: "GH₵ 6",
       unit: "per bag",
       quantity: "30 sachets",
       features: [
@@ -25,9 +25,9 @@ const PricingSection = () => {
     {
       name: "Bulk Order",
       description: "Best for families & small businesses",
-      price: "GH₵ 7.50",
+      price: "GH₵ 5.50",
       unit: "per bag",
-      quantity: "10-49 bags",
+      quantity: "30-49 bags",
       savings: "Save 6%",
       features: [
         "30 x 500ml sachets per bag",
@@ -40,7 +40,7 @@ const PricingSection = () => {
     {
       name: "Wholesale",
       description: "For retailers & large businesses",
-      price: "GH₵ 7",
+      price: "GH₵ 6",
       unit: "per bag",
       quantity: "50+ bags",
       savings: "Save 12.5%",

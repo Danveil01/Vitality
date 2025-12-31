@@ -1,30 +1,35 @@
-/**
- * =============================================================================
- * BENEFITS SECTION - src/components/BenefitsSection.tsx
- * =============================================================================
- * 
- * Highlights the health benefits of staying hydrated with pure water.
- * Uses a two-column layout with benefit cards on the left and
- * statistics cards on the right.
- * 
- * Benefits displayed:
- * - Healthy Heart, Mental Clarity, Energy Boost
- * - Glowing Skin, Better Performance, Temperature Control
- * 
- * Statistics:
- * - Daily recommended intake (2L+)
- * - Purity guarantee (99.9%)
- * - Total volume per bag (15L)
- * - Freshness seal (24/7)
- * 
- * Design: Decorative curved background shape
- * =============================================================================
- */
-
 import { Heart, Brain, Zap, Sparkles, Activity, ThermometerSun } from "lucide-react";
 
 const BenefitsSection = () => {
-  // Health benefits data configuration
+  // --- Styling Constants ---
+  const styles = {
+    section: "py-24 bg-gradient-water relative overflow-hidden",
+    bgDecoration: "absolute top-0 right-0 w-1/2 h-full bg-primary/5 rounded-l-full",
+    container: "container mx-auto px-4 relative z-10",
+    mainGrid: "grid lg:grid-cols-2 gap-16 items-center",
+    
+    // Left Content Column
+    contentWrapper: "animate-fade-up",
+    badge: "text-primary font-semibold uppercase tracking-wider text-sm",
+    title: "font-serif text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6",
+    description: "text-muted-foreground text-lg mb-8",
+    
+    // Benefits Grid (Small items)
+    benefitsGrid: "grid grid-cols-1 sm:grid-cols-2 gap-6",
+    benefitItem: "flex items-start gap-4 animate-slide-in",
+    iconWrapper: "w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0",
+    icon: "w-6 h-6 text-primary",
+    benefitTitle: "font-semibold text-foreground mb-1",
+    benefitText: "text-muted-foreground text-sm",
+    
+    // Statistics Grid (Right cards)
+    statsGrid: "grid grid-cols-2 gap-6",
+    statCard: `bg-gradient-card rounded-2xl p-8 shadow-card text-center 
+               animate-fade-up hover:shadow-elevated transition-all duration-300`,
+    statValue: "font-serif text-4xl md:text-5xl font-bold text-primary mb-2",
+    statLabel: "text-muted-foreground text-sm font-medium",
+  };
+
   const benefits = [
     {
       icon: Heart,
@@ -58,44 +63,47 @@ const BenefitsSection = () => {
     },
   ];
 
+  const stats = [
+    { value: "2L+", label: "Daily Recommended Intake" },
+    { value: "99.9%", label: "Purity Guaranteed" },
+    { value: "15L", label: "Per 30-Pack Bag" },
+    { value: "24/7", label: "Freshness Sealed" },
+  ];
+
   return (
-    <section id="benefits" className="py-24 bg-gradient-water relative overflow-hidden">
-      {/* Decorative Background Shape - Right side curve */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/5 rounded-l-full" />
+    <section id="benefits" className={styles.section}>
+      {/* Decorative Background Shape */}
+      <div className={styles.bgDecoration} aria-hidden="true" />
       
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className={styles.container}>
+        <div className={styles.mainGrid}>
           
           {/* Left Column - Benefits Content */}
-          <div className="animate-fade-up">
-            {/* Section header */}
-            <span className="text-primary font-semibold uppercase tracking-wider text-sm">
-              Health Benefits
-            </span>
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6">
+          <div className={styles.contentWrapper}>
+            <span className={styles.badge}>Health Benefits</span>
+            <h2 className={styles.title}>
               Hydration for a <span className="text-gradient">Better Life</span>
             </h2>
-            <p className="text-muted-foreground text-lg mb-8">
+            <p className={styles.description}>
               Water is essential for every cell, tissue, and organ in your body. 
               Vitality Purified Mineral Water delivers the hydration you need with 
               essential minerals for optimal health.
             </p>
             
-            {/* Benefits grid - Shows first 4 benefits */}
-            <div className="grid grid-cols-2 gap-6">
+            {/* Small Benefits Icons Grid */}
+            <div className={styles.benefitsGrid}>
               {benefits.slice(0, 4).map((benefit, index) => (
                 <div
                   key={benefit.title}
-                  className="flex items-start gap-4 animate-slide-in"
+                  className={styles.benefitItem}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  {/* Benefit icon */}
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <benefit.icon className="w-6 h-6 text-primary" />
+                  <div className={styles.iconWrapper}>
+                    <benefit.icon className={styles.icon} />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">{benefit.title}</h4>
-                    <p className="text-muted-foreground text-sm">{benefit.description}</p>
+                    <h4 className={styles.benefitTitle}>{benefit.title}</h4>
+                    <p className={styles.benefitText}>{benefit.description}</p>
                   </div>
                 </div>
               ))}
@@ -103,24 +111,15 @@ const BenefitsSection = () => {
           </div>
           
           {/* Right Column - Statistics Cards Grid */}
-          <div className="grid grid-cols-2 gap-6">
-            {[
-              { value: "2L+", label: "Daily Recommended Intake" },
-              { value: "99.9%", label: "Purity Guaranteed" },
-              { value: "15L", label: "Per 30-Pack Bag" },
-              { value: "24/7", label: "Freshness Sealed" },
-            ].map((stat, index) => (
+          <div className={styles.statsGrid}>
+            {stats.map((stat, index) => (
               <div
                 key={stat.label}
-                className="bg-gradient-card rounded-2xl p-8 shadow-card text-center animate-fade-up hover:shadow-elevated transition-all duration-300"
+                className={styles.statCard}
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
-                {/* Large statistic value */}
-                <div className="font-serif text-4xl md:text-5xl font-bold text-primary mb-2">
-                  {stat.value}
-                </div>
-                {/* Statistic label */}
-                <div className="text-muted-foreground text-sm">{stat.label}</div>
+                <div className={styles.statValue}>{stat.value}</div>
+                <div className={styles.statLabel}>{stat.label}</div>
               </div>
             ))}
           </div>
